@@ -1,27 +1,27 @@
 package com.akosha.WorkQueue;
-import java.io.IOException;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.QueueingConsumer;
 
-public class Worker {
-	private static final String TASK_QUEUE_NAME = "task_queue";
+public class Worker1 {
+	private static final String QUEUE_NAME = "Worker_Queue";
 
 	public static void main(String[] argv)
 			throws java.io.IOException,
-			java.lang.InterruptedException {ConnectionFactory factory = new ConnectionFactory();
+			java.lang.InterruptedException {
+			ConnectionFactory factory = new ConnectionFactory();
 			factory.setHost("localhost");
 			Connection connection = factory.newConnection();
 			Channel channel = connection.createChannel();
 
-			channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+			channel.queueDeclare(QUEUE_NAME, true, false, false, null);
 			System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
 			channel.basicQos(1);
 
 			QueueingConsumer consumer = new QueueingConsumer(channel);
-			channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
+			channel.basicConsume(QUEUE_NAME, false, consumer);
 
 			while (true) {
 				QueueingConsumer.Delivery delivery = consumer.nextDelivery();
@@ -34,9 +34,13 @@ public class Worker {
 				channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
 			}
 	}
+	
 	private static void doWork(String task) throws InterruptedException {
-		for (char ch: task.toCharArray()) {
-			if (ch == '.') Thread.sleep(1000);
-		}
+	    for (char ch: task.toCharArray()) {
+	        if (ch == '.') {
+	        	System.out.println("Worker1 going to sleep for a sec");
+	        	Thread.sleep(1000);
+	        }
+	    }
 	}
 }

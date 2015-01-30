@@ -5,7 +5,7 @@
 	<classpathentry kind="lib" path="D:/Soft/rabbitmq-java-client-bin-3.0.4/commons-cli-1.1.jar"/>
 	<classpathentry kind="lib" path="D:/Soft/rabbitmq-java-client-bin-3.0.4/commons-io-1.2.jar"/>
 	<classpathentry kind="lib" path="D:/Soft/rabbitmq-java-client-bin-3.0.4/junit.jar"/>
-	<classpathentry kind="lib" path="D:/Soft/rabbitmq-java-client-bin-3.0.4/rabbitmq-client.jar"/>
+	<classpathentry kind="lib" path="D:/Soft/rabbitmq-java-client-bin-3.0.4/rabbitmq-client.jar" sourcepath="D:/Installations/RabbitMQ/rabbitmq-java-client-3.4.3-src.zip"/>
 	<classpathentry kind="lib" path="D:/Soft/rabbitmq-java-client-bin-3.0.4/rabbitmq-client-tests.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
